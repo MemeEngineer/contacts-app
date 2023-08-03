@@ -1,7 +1,12 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useContext} from 'react';
+import { ContactsContext } from '../../context/contactsContext';
+
+
 
 function ContactForm(props){
-const{addNewContact} = props
+    //using the Contacts Context
+const contactsCtx = useContext(ContactsContext)
+const{dispatch} = contactsCtx
 const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,7 +25,11 @@ const [formData, setFormData] = useState({
         //     phone: phoneRef.current.value
         // }
         // addNewContact(newContact)
-        addNewContact(formData)
+        const newContact = {...formData, id: new Date()}
+        
+        // addNewContact(newContact)
+dispatch({type: 'add_contact', payload: newContact})
+
         setFormData({
             name: '',
             email:'',

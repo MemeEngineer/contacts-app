@@ -1,7 +1,11 @@
 
 import ContactItem from '../ContactItem'
+import {useContext} from 'react'
+import { ContactsContext } from '../../context/contactsContext'
 function ContactsList(props){
-const {contacts} = props
+
+const contactsCtx = useContext(ContactsContext)
+const {contacts} = contactsCtx
     return(
         <div>
             <h2>Contacts List</h2>
